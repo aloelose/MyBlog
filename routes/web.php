@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
    Route::get('/', 'IndexController')->name('main.index');
+});
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function () {
     Route::get('/', 'IndexController')->name('post.index');
@@ -22,11 +29,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Category', 'prefix' => 'categ
     Route::get('/', 'IndexController')->name('category.index');
 
     Route::group(['namespace' => 'Post', 'prefix' => '{category}/posts'], function() {
-        Route::get('/', 'IndexController')->name('category.post.index');
+        Route::get('/', 'IndexController')->name('category.post.index
+        ');
     });
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'conditional.verify']], function () {
     Route::group(['namespace' => 'Main', 'prefix'=>'main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
     });

@@ -13,6 +13,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        return view('personal.main.index');
+        $user = auth()->user();
+        return view('personal.main.index', compact('user'))->with('user', $user);
     }
 }

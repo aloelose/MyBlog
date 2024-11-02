@@ -1,7 +1,8 @@
 FROM php:8.2-fpm
 
-RUN apt-get update && \
-    apt-get install apt-utils
+RUN apt-get update
+RUN apt-get install
+RUN apt-utils
 RUN apt-get install -y libpq-dev
 RUN apt-get install -y libpng-dev
 RUN apt-get install -y libzip-dev

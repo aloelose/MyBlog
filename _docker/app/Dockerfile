@@ -22,6 +22,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin
 
 WORKDIR /var/www
-RUN apt-get -y install nodejs
-RUN npm install
+
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x
+RUN apt-get install npm -y
 CMD ["npm run dev"]

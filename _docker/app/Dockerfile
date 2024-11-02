@@ -1,5 +1,14 @@
 FROM php:8.2-fpm
 
+echo 'deb http://mirror.yandex.ru/debian/ bookworm main contrib non-free non-free-firmware
+deb-src http://mirror.yandex.ru/debian/ bookworm main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+
+deb http://mirror.yandex.ru/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src http://mirror.yandex.ru/debian/ bookworm-updates main contrib non-free non-free-firmware' > /etc/apt/sources.list
+
 RUN apt-get -y install
 RUN apt-get update
 RUN apt-get install

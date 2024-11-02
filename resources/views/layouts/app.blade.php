@@ -54,7 +54,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <form action="{{route('logzout')}}" method="post">
+                                <form action="{{route('logout')}}" method="post">
                                     @csrf
                                     <input class="btn btn-outline-primary" type="submit" value="Выйти">
                                 </form>

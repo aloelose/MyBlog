@@ -1,6 +1,5 @@
 FROM php:8.2-fpm
 
-RUN apt-get -y update
 RUN apt-get install
 RUN apt-utils
 RUN apt-get install -y libpq-dev

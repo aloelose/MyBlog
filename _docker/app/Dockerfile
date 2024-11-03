@@ -1,7 +1,8 @@
 FROM php:8.2-fpm
 
 RUN apt-get -y update
-RUN apt-get install -y libpq-dev
+RUN apt-get remove libpq5
+RUN apt-get install libpq-dev
 RUN apt-get install -y libpng-dev
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y zip unzip

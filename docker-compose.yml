@@ -1,9 +1,10 @@
 services:
     nginx:
+
         image: nginx:latest
         volumes:
-            - /home/danil/projects/blog/:/var/www/
-            - /home/danil/projects/blog/_docker/nginx/conf.d/:/etc/nginx/conf.d/
+            - ./:/var/www/
+            - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
         ports:
             - "8876:80"
         depends_on:
@@ -11,19 +12,19 @@ services:
         container_name: project_nginx
     app:
         build:
-            context: /home/danil/projects/blog/
+            context: .
             dockerfile: _docker/app/Dockerfile
         volumes:
-            - /home/danil/projects/blog/:/var/www/
+            - ./:/var/www/
         depends_on:
             - db
         container_name: project_app
-
+        user: "1000:1000"
     db:
         image: mysql:8.0
         restart: always
         volumes:
-            - /home/danil/projects/blog/tmp/db:/var/lib/mysql
+            - ./tmp/db:/var/lib/mysql
         environment:
             MYSQL_DATABASE: blogdb
             MYSQL_ROOT_PASSWORD: root
